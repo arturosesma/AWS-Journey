@@ -9,8 +9,6 @@ Cuándo NO usar usuarios IAM (respuesta casi siempre: usa roles o IAM Identity C
 
 Root account: qué solo puede hacer root (cerrar cuenta, cambiar plan de soporte, cambiar email/nombre, restaurar política de bucket S3 mal puesta), 
 
-MFA obligatorio, cero access keys.
-
 **2. Los seis tipos de política** — esto es lo que más reprueba gente
 Identity-based, resource-based, permissions boundaries, SCPs (y RCPs de Organizations), session policies, ACLs. Para el examen: qué hace cada una y cuál se usa en el escenario que te describen.
 

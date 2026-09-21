@@ -30,13 +30,17 @@ An **IAM user** is an identity you create inside an AWS account to represent a *
 ### Exam takeaways (SAA-C03)
 
 - IAM users are the **legacy / last-resort** option. For **humans**, the preferred answer is **IAM Identity Center** (SSO, federated, temporary credentials). For **applications and AWS services** (EC2, Lambda, ECS), the answer is **IAM roles**, never users with hard-coded access keys.
+
 - Use an IAM user only when the scenario truly needs long-term credentials (e.g., a third-party tool or on-prem system that cannot assume a role and cannot use IAM Roles Anywhere).
+
 - Best practices when you do use them: enforce **MFA**, apply **least privilege**, put users in **groups**, **rotate** access keys, delete unused credentials (check the **credential report** and **Access Advisor**).
+
 - Anti-patterns: sharing one user between people, embedding access keys in code or environment variables, using the root user for daily work.
 
 ## Groups
 
 An **IAM group** is a **collection of IAM users**. Its purpose is to manage permissions for many users at once: attach a policy to the group and every member gets those permissions.
+
 
 ### Key characteristics
 
@@ -377,7 +381,7 @@ The **root user** is the identity created automatically with an AWS account, tie
 
 - **MFA is mandatory on the root user.** Because root has unrestricted access, a stolen password alone must never be enough. Use a **FIDO2 security key or hardware/virtual MFA device** (AWS lets you register multiple MFA devices for root as a backup).
 - **Zero access keys for root.** Root access keys give programmatic, unrestricted, non-expiring access and cannot be limited by IAM policies. **Delete any that exist** and never create new ones; use roles or Identity Center for CLI/SDK access.
-- Verify both with **IAM Access Analyzer / Security Hub / AWS Config** rules (e.g., `root-account-mfa-enabled`, `iam-root-access-key-check`) and the **credential report**.
+- Verify both with **AWS Config / Security Hub** rules (e.g., `root-account-mfa-enabled`, `iam-root-access-key-check`) and the **credential report**.
 
 ### Best practices
 - **Never use root for daily work**: create an admin identity (IAM Identity Center or an IAM admin role/user) instead.
